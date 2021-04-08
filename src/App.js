@@ -1,16 +1,38 @@
 // import logo from './logo.svg';
 // import './App.css';
-
-// import KanbanTable from './components/KanbanTable';
-import React from 'react';
+import React, { useState } from 'react';
 import BacklogTable from './components/BacklogTable';
 import ReadyTable from './components/ReadyTable';
 
+const KanbanMock = {
+  backlog: {
+    title: 'Backlog',
+    issues: [
+      { id: 'task1', name: 'Sprint bugfix 1', desc: 'lorem lorem lorem lorem' },
+      { id: 'task2', name: 'Sprint bugfix 2', desc: 'lorem lorem lorem lorem' },
+      { id: 'task3', name: 'Sprint bugfix 3', desc: 'lorem lorem lorem lorem' },
+      { id: 'task4', name: 'Sprint bugfix 4', desc: 'lorem lorem lorem lorem' },
+    ],
+  },
+
+  ready: {
+    title: 'Ready',
+    issues: [
+      { id: 'task1', name: 'Ready bugfix 1', desc: 'lorem lorem lorem lorem' },
+      { id: 'task2', name: 'Ready bugfix 2', desc: 'lorem lorem lorem lorem' },
+      { id: 'task3', name: 'Ready bugfix 3', desc: 'lorem lorem lorem lorem' },
+      { id: 'task4', name: 'Ready bugfix 4', desc: 'lorem lorem lorem lorem' },
+    ],
+  },
+};
+
 function App() {
+  const [allTasks] = useState(KanbanMock);
+
   return (
     <div className="kanban-table-container">
-      <BacklogTable />
-      <ReadyTable />
+      <BacklogTable backlog={allTasks.backlog} />
+      <ReadyTable ready={allTasks.ready} />
     </div>
     // <div className="App">
     //   <header className="App-header">
