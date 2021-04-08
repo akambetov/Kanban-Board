@@ -1,0 +1,11 @@
+.kanban-table-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.kanban-table-item {
+  /* width: 100px;
+  height: 100px; */
+  background-color: red;
+  flex-basis: 300px;
+}
