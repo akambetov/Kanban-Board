@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import BacklogTable from './components/BacklogTable';
 import ReadyTable from './components/ReadyTable';
+import Navbar from './components/Navbar/Navbar';
 
 const KanbanMock = {
   backlog: {
@@ -30,10 +31,12 @@ function App() {
   const [allTasks] = useState(KanbanMock);
 
   return (
-    <div className="kanban-table-container">
+    <>
+      <Navbar />
       <BacklogTable backlog={allTasks.backlog} />
       <ReadyTable ready={allTasks.ready} />
-    </div>
+    </>
+
     // <div className="App">
     //   <header className="App-header">
     //     <img src={logo} className="App-logo" alt="logo" />
