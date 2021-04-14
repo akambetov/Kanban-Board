@@ -1,4 +1,9 @@
+/* VARS */
 :root {
   --nav-bg-color: #0067a3;
   --nav-color: #ffffff;
+}
+
+.outline-none {
+  outline-style: none;
 }

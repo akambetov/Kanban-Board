@@ -11,19 +11,11 @@
 .dropdown-arrow {
   position: absolute;
   top: 50%;
-  right: -20%;
+  right: -45%;
 }
 .dropdown-toggle::after {
   display: none;
-  /* display: inline-block;
-  margin-left: 0.255em;
-  vertical-align: 0.255em;
-  content: '';
-  border-top: 0.3em solid;
-  border-right: 0.3em solid transparent;
-  border-bottom: 0;
-  border-left: 0.3em solid transparent; */
 }
 .dropdown-menu--translate {
-  transform: translateX(-50%);
+  transform: translateX(-60%);
 }
