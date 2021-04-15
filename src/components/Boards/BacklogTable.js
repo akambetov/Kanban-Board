@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import BaseKanbanTable from './BaseKanbanTable';
+import { TaskContext } from '../../context/taskContext';
 
-function Backlog({ backlog }) {
-  // const backlog = useContext(BacklogContext);
+function Backlog() {
+  const { state } = useContext(TaskContext);
+  const backlog = state.backlog;
   // const [backlog, setBacklog] = useState(backlogTable);
-
   return (
     <React.Fragment>
-      <BaseKanbanTable issues={backlog.issues} title={backlog.title} />
+      <BaseKanbanTable boardData={backlog} />
     </React.Fragment>
   );
 }

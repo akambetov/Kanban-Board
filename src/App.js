@@ -1,6 +1,9 @@
 // import logo from './logo.svg';
 // import './App.css';
-import React, { useState } from 'react';
+import React, { useReducer } from 'react';
+import reducer from './reducer/reducer';
+import { TaskContext } from './context/taskContext';
+import Container from './components/Container';
 import BacklogTable from './components/Boards/BacklogTable';
 import ReadyTable from './components/Boards/ReadyTable';
 import Navbar from './components/Navbar/Navbar';
@@ -28,13 +31,19 @@ const KanbanMock = {
 };
 
 function App() {
-  const [allTasks] = useState(KanbanMock);
-
+  // const [allTasks] = useState(KanbanMock);
+  const [state, dispatch] = useReducer(reducer, KanbanMock);
+  console.log(state);
   return (
     <>
       <Navbar />
-      <BacklogTable backlog={allTasks.backlog} />
-      <ReadyTable ready={allTasks.ready} />
+
+      <Container>
+        <TaskContext.Provider value={{ state }}>
+          <BacklogTable />
+          {/* <ReadyTable /> */}
+        </TaskContext.Provider>
+      </Container>
     </>
 
     // <div className="App">

@@ -1,0 +1,4 @@
+.container-main {
+  background-color: var(--container-main-bg);
+  padding: 1rem;
+}

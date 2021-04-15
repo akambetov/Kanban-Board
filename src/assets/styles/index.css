@@ -2,3 +2,4 @@
 @import './settings';
 @import './components/kanban-table';
 @import './components/navigation/';
+@import './components/container/';

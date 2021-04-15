@@ -2,6 +2,13 @@
 :root {
   --nav-bg-color: #0067a3;
   --nav-color: #ffffff;
+  --container-main-bg: #0079bf;
+  --table-container-bg: #ebecf0;
+  --list-item-bg: #ffffff;
+
+  /*add button color*/
+  --task-add-cl: #5e6c84;
+  --task-add-hover-bg: #ffffff;
 }
 
 .outline-none {

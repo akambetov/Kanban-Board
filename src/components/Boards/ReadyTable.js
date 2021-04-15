@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import BaseKanbanTable from './BaseKanbanTable';
+import { TaskContext } from '../../context/taskContext';
 
-function Ready({ ready }) {
-  // const ready = useContext(ReadyContext);
-  // const [ready] = useState(readyTable);
+function Ready() {
+  const { state } = useContext(TaskContext);
+  const ready = state.ready;
 
   return (
     <React.Fragment>
-      <BaseKanbanTable issues={ready.issues} title={ready.title} />
+      <BaseKanbanTable boardData={ready} />
     </React.Fragment>
   );
 }
