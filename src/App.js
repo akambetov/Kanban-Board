@@ -1,8 +1,8 @@
 // import logo from './logo.svg';
 // import './App.css';
 import React, { useState } from 'react';
-import BacklogTable from './components/BacklogTable';
-import ReadyTable from './components/ReadyTable';
+import BacklogTable from './components/Boards/BacklogTable';
+import ReadyTable from './components/Boards/ReadyTable';
 import Navbar from './components/Navbar/Navbar';
 
 const KanbanMock = {
