@@ -45,31 +45,6 @@ function KanbanNavbar() {
             </a>
           </div>
         </div>
-
-        {/* <div className="mr-2" style={{ width: 40 + 'px' }} onClick={toggleMenu}>
-          <ul className="navbar-nav">
-            <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle" href="#">
-                <div className="dropdown-userAvatar">
-                  <img src={userAvatar} alt="user-avatar" />
-                </div>
-                <img
-                  className="dropdown-arrow"
-                  src={isOpenDropdown ? arrowUp : arrowDown}
-                  alt="arrow-down"
-                />
-              </a>
-              <div className="dropdown-menu dropdown-menu--translate">
-                <a className="dropdown-item" href="#">
-                  Action
-                </a>
-                <a className="dropdown-item" href="#">
-                  Another action
-                </a>
-              </div>
-            </li>
-          </ul>
-        </div> */}
       </nav>
     </>
   );
