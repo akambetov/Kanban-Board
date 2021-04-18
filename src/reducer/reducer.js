@@ -9,11 +9,28 @@ export default function (state, action) {
       state.backlog.issues = [
         ...state.backlog.issues,
         {
-          id: Date.now(),
+          id: Date.now().toString(),
           title: action.payload,
           desc: 'DESCRIPTION FROM REDUCER',
         },
       ];
+      return state;
+    case 'add-ready':
+      state.ready.issues = [
+        ...state.ready.issues,
+        ...state.backlog.issues.filter((issue) => {
+          console.log(issue.id === action.payload);
+          console.log(issue.id, action.payload);
+          return issue.id === action.payload;
+        }),
+      ];
+      // state.ready.issues.push(
+      //   ...state.backlog.issues.filter((issue) => issue.id === action.payload)
+      // );
+      state.backlog.issues = [
+        ...state.backlog.issues.filter((issue) => issue.id !== action.payload),
+      ];
+      console.log(action.payload);
       return state;
     default:
       return state;

@@ -11,27 +11,31 @@ import Navbar from './components/Navbar/Navbar';
 const KanbanMock = {
   backlog: {
     title: 'Backlog',
-    updateFrom: 'user input',
+    // updateFrom: 'user input',
     issues: [
       {
-        id: 'task1',
+        id: 'backlog-task1',
         title: 'Sprint bugfix 1',
         desc: 'lorem lorem lorem lorem',
+        ready: false,
       },
       {
-        id: 'task2',
+        id: 'backlog-task2',
         title: 'Sprint bugfix 2',
         desc: 'lorem lorem lorem lorem',
+        ready: false,
       },
       {
-        id: 'task3',
+        id: 'backlog-task3',
         title: 'Sprint bugfix 3',
         desc: 'lorem lorem lorem lorem',
+        ready: false,
       },
       {
-        id: 'task4',
+        id: 'backlog-task4',
         title: 'Sprint bugfix 4',
         desc: 'lorem lorem lorem lorem',
+        ready: false,
       },
     ],
   },
@@ -40,10 +44,15 @@ const KanbanMock = {
     title: 'Ready',
     updateFrom: 'backlog',
     issues: [
-      { id: 'task1', title: 'Ready bugfix 1', desc: 'lorem lorem lorem lorem' },
-      // { id: 'task2', title: 'Ready bugfix 2', desc: 'lorem lorem lorem lorem' },
-      // { id: 'task3', title: 'Ready bugfix 3', desc: 'lorem lorem lorem lorem' },
-      // { id: 'task4', title: 'Ready bugfix 4', desc: 'lorem lorem lorem lorem' },
+      {
+        id: 'ready-task1',
+        title: 'Ready bugfix 1',
+        desc: 'lorem lorem lorem lorem',
+        ready: true,
+      },
+      // { id: 'ready-task2', title: 'Ready bugfix 2', desc: 'lorem lorem lorem lorem' },
+      // { id: 'ready-task3', title: 'Ready bugfix 3', desc: 'lorem lorem lorem lorem' },
+      // { id: 'ready-task4', title: 'Ready bugfix 4', desc: 'lorem lorem lorem lorem' },
     ],
   },
 };
@@ -51,7 +60,7 @@ const KanbanMock = {
 function App() {
   // const [allTasks] = useState(KanbanMock);
   const [state, dispatch] = useReducer(reducer, KanbanMock);
-  console.log(state);
+  // console.log(state);
   return (
     <>
       <Navbar />

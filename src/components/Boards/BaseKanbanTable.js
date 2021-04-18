@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { TaskContext } from '../../context/taskContext';
 
-function KanbanTable({ boardData }) {
-  const { state, dispatch } = useContext(TaskContext);
+function KanbanTable({ boardData, addTask, submitTask, options }) {
   const [issues, setIssues] = useState();
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState();
+  const [selected, setSelected] = useState(null); // null
+  const { state } = useContext(TaskContext);
 
   useEffect(() => {
     setIssues(
@@ -15,62 +16,28 @@ function KanbanTable({ boardData }) {
       ))
     );
     console.log('setIssues');
-    console.log(boardData);
+    console.log(boardData.issues);
   }, [boardData.issues]);
-
-  const hideShowBtn = () => {
-    const taskAdd = document.querySelector('.task-add');
-    const taskSubmit = document.querySelector('.task-submit');
-    taskAdd.classList.toggle('hide');
-    taskSubmit.classList.toggle('hide');
-  };
-
-  const addTask = () => {
-    hideShowBtn();
-    // let newTask = '';
-    // const taskGroup = document.querySelector('.task-group');
-    // const taskItem = document.createElement('li');
-    // taskItem.classList.add('task-item');
-
-    if (boardData.title === 'Backlog') {
-      // newTask = document.createElement('input');
-      // newTask.classList.add('task-item--new');
-      const inputContainer = document.getElementById('inputContainer');
-      inputContainer.classList.remove('hide');
-      inputContainer.querySelector('.task-item--new').focus();
-      // console.dir(inputContainer);
-    }
-    // taskItem.appendChild(newTask);
-    // taskGroup.appendChild(taskItem);
-  };
 
   const handleInputTitle = (e) => {
     setTitle(e.target.value);
   };
-
-  const submitTask = () => {
-    hideShowBtn();
-    const inputContainer = document.getElementById('inputContainer');
-    const inputField = inputContainer.querySelector('.task-item--new');
-    console.log(inputField.value);
-    // const taskGroup = document.querySelector('.task-group');
-    // taskGroup.removeChild(inputContainer);
-    if (inputField.value) {
-      inputContainer.classList.add('hide');
-      dispatch({
-        type: 'add-backlog',
-        payload: title,
-      });
-      setTitle('');
-      console.log(state);
-    }
+  const handleSelectTitle = (e) => {
+    setSelected((prev) => (prev = e.target.value));
+    // e.target.value = 'choose';
+    // console.log(selected);
+    // console.log(e.target.value);
   };
+
   return (
     <div className="table-container">
       <div>{boardData.title}</div>
       <ul className="task-group">{issues}</ul>
 
-      <div id="inputContainer" className="task-item hide">
+      <div
+        id={`input-container-${boardData.title.toLowerCase()}`}
+        className="task-item hide"
+      >
         <input
           className="task-item--new"
           onChange={handleInputTitle}
@@ -79,10 +46,38 @@ function KanbanTable({ boardData }) {
         />
       </div>
 
-      <button type="button" className="task-add" onClick={addTask}>
+      <div
+        id={`select-container-${boardData.title.toLowerCase()}`}
+        className="task-item hide custom-select"
+      >
+        <select
+          className="task-select"
+          onChange={handleSelectTitle}
+          defaultValue={'choose'}
+        >
+          <option className="task-option" value="choose" disabled>
+            Choose a task
+          </option>
+          {options}
+        </select>
+      </div>
+
+      <button
+        type="button"
+        className={`task-add task-add-${boardData.title.toLowerCase()}`}
+        onClick={addTask}
+      >
         Add card
       </button>
-      <button type="button" className="task-submit hide" onClick={submitTask}>
+      <button
+        type="button"
+        className={`task-submit task-submit-${boardData.title.toLowerCase()} hide`}
+        onClick={() => {
+          boardData.title === 'Backlog'
+            ? submitTask(title, setTitle)
+            : submitTask(selected, setSelected);
+        }}
+      >
         Submit
       </button>
     </div>
