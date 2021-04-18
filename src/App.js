@@ -11,25 +11,39 @@ import Navbar from './components/Navbar/Navbar';
 const KanbanMock = {
   backlog: {
     title: 'Backlog',
+    updateFrom: 'user input',
     issues: [
       {
         id: 'task1',
         title: 'Sprint bugfix 1',
         desc: 'lorem lorem lorem lorem',
       },
-      // { id: 'task2', name: 'Sprint bugfix 2', desc: 'lorem lorem lorem lorem' },
-      // { id: 'task3', name: 'Sprint bugfix 3', desc: 'lorem lorem lorem lorem' },
-      // { id: 'task4', name: 'Sprint bugfix 4', desc: 'lorem lorem lorem lorem' },
+      {
+        id: 'task2',
+        title: 'Sprint bugfix 2',
+        desc: 'lorem lorem lorem lorem',
+      },
+      {
+        id: 'task3',
+        title: 'Sprint bugfix 3',
+        desc: 'lorem lorem lorem lorem',
+      },
+      {
+        id: 'task4',
+        title: 'Sprint bugfix 4',
+        desc: 'lorem lorem lorem lorem',
+      },
     ],
   },
 
   ready: {
     title: 'Ready',
+    updateFrom: 'backlog',
     issues: [
       { id: 'task1', title: 'Ready bugfix 1', desc: 'lorem lorem lorem lorem' },
-      // { id: 'task2', name: 'Ready bugfix 2', desc: 'lorem lorem lorem lorem' },
-      // { id: 'task3', name: 'Ready bugfix 3', desc: 'lorem lorem lorem lorem' },
-      // { id: 'task4', name: 'Ready bugfix 4', desc: 'lorem lorem lorem lorem' },
+      // { id: 'task2', title: 'Ready bugfix 2', desc: 'lorem lorem lorem lorem' },
+      // { id: 'task3', title: 'Ready bugfix 3', desc: 'lorem lorem lorem lorem' },
+      // { id: 'task4', title: 'Ready bugfix 4', desc: 'lorem lorem lorem lorem' },
     ],
   },
 };
@@ -45,7 +59,7 @@ function App() {
       <Container>
         <TaskContext.Provider value={{ state, dispatch }}>
           <BacklogTable />
-          {/* <ReadyTable /> */}
+          <ReadyTable />
         </TaskContext.Provider>
       </Container>
     </>

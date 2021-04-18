@@ -51,9 +51,16 @@
 .hide {
   display: none;
 }
-/* .kanban-table-item { */
-/* width: 100px;
-  height: 100px; */
-/* background-color: red;
-  flex-basis: 300px;
+
+/*  Select */
+/* .custom-select {
+  position: relative;
+}
+.task-select {
+  display: none;
+}
+.task-option {
+  outline: 0;
+  border: 2px solid red;
+  height: 100px;
 } */
