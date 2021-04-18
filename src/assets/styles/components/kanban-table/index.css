@@ -27,7 +27,7 @@
 .task-submit {
   padding: 0;
   border: none;
-  width: 5rem;
+  width: 7.5rem;
   border-radius: 5px;
   color: var(--task-add-cl);
   background-color: transparent;
@@ -47,8 +47,8 @@
   position: absolute;
   left: 5px;
 }
-.task-add--hide,
-.task-submit--hide {
+
+.hide {
   display: none;
 }
 /* .kanban-table-item { */
