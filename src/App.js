@@ -1,6 +1,6 @@
 // import logo from './logo.svg';
 // import './App.css';
-import React, { useReducer } from 'react';
+import React, { useReducer, useState } from 'react';
 import reducer from './reducer/reducer';
 import { TaskContext } from './context/taskContext';
 import Container from './components/Container';
@@ -60,15 +60,24 @@ const KanbanMock = {
 function App() {
   // const [allTasks] = useState(KanbanMock);
   const [state, dispatch] = useReducer(reducer, KanbanMock);
-  // console.log(state);
+  const [dataFromReady, setDataFromReady] = useState();
+  
+  const handleDataFromReady = (data) => {
+    console.log('###################### ######################');
+    console.log(data);
+    setDataFromReady(data);
+    console.log(dataFromReady)
+    console.log('###################### ######################');
+  };
+
   return (
     <>
       <Navbar />
 
       <Container>
         <TaskContext.Provider value={{ state, dispatch }}>
-          <BacklogTable />
-          <ReadyTable />
+          <BacklogTable dataFromReady={dataFromReady}/>
+          <ReadyTable handleDataFromReady={handleDataFromReady}/>
         </TaskContext.Provider>
       </Container>
     </>

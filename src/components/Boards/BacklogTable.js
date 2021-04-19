@@ -3,7 +3,7 @@ import BaseKanbanTable from './BaseKanbanTable';
 import { TaskContext } from '../../context/taskContext';
 import hideShowBtn from '../../utils/hideShowBtn';
 
-function Backlog() {
+function Backlog({dataFromReady}) {
   const { state, dispatch } = useContext(TaskContext);
   // const [backlog, setBacklog] = useState(state.backlog);
   // useEffect(() => {
@@ -11,7 +11,7 @@ function Backlog() {
   //   console.log('Backlog use effect')
   //   console.log(backlog)
   // });
-
+  // console.log(dataFromReady);
   const addTask = () => {
     hideShowBtn(state, state.backlog.title.toLowerCase());
 
@@ -43,6 +43,7 @@ function Backlog() {
         boardData={state.backlog}
         addTask={addTask}
         submitTask={submitTask}
+        dataFromReady={dataFromReady}
       />
     </React.Fragment>
   );

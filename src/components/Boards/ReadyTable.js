@@ -3,7 +3,7 @@ import BaseKanbanTable from './BaseKanbanTable';
 import { TaskContext } from '../../context/taskContext';
 import hideShowBtn from '../../utils/hideShowBtn';
 
-function Ready() {
+function Ready({handleDataFromReady}) {
   const { state, dispatch } = useContext(TaskContext);
   // const [ready, setBacklog] = useState(state.ready);
 
@@ -48,6 +48,7 @@ function Ready() {
     });
     setSelected('');
   
+    handleDataFromReady(state.backlog);
     console.log(state);
     console.log(selected);
   };

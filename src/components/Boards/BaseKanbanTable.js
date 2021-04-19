@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { TaskContext } from '../../context/taskContext';
 
-function KanbanTable({ boardData, addTask, submitTask, options }) {
+function KanbanTable({ boardData, addTask, submitTask, options, dataFromReady }) {
   const [issues, setIssues] = useState();
   const [title, setTitle] = useState('');
   const [selected, setSelected] = useState(null); // null
@@ -16,9 +16,10 @@ function KanbanTable({ boardData, addTask, submitTask, options }) {
       ))
     );
     console.log('setIssues');
+    console.log(dataFromReady);
     console.log(boardData.issues);
     console.log(state.backlog.issues);
-  }, [boardData.issues, state.backlog.issues]);
+  }, [boardData.issues, dataFromReady ]);
 
   const handleInputTitle = (e) => {
     setTitle(e.target.value);
