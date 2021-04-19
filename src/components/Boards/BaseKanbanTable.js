@@ -1,41 +1,87 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { TaskContext } from '../../context/taskContext';
+import React, { useEffect, useState } from 'react';
+import hideShowBtn from '../../utils/hideShowBtn';
 
-function KanbanTable({ boardData, addTask, submitTask, options }) {
-  const [issues, setIssues] = useState();
-  const [title, setTitle] = useState();
-  const [selected, setSelected] = useState(null); // null
-  const { state } = useContext(TaskContext);
+function KanbanTable({ issues, dispatch, updateFrom }) {
+  const [title, setTitle] = useState('');
+  const [selected, setSelected] = useState(null);
 
-  useEffect(() => {
-    setIssues(
-      boardData.issues.map((issue) => (
-        <li className="task-item" key={issue.id}>
-          {issue.title}
-        </li>
-      ))
+  const addTask = () => {
+    hideShowBtn(issues.title.toLowerCase());
+
+    if (issues.title === 'Backlog') {
+      const inputContainer = document.getElementById(
+        `input-container-${issues.title.toLowerCase()}`
+      );
+      inputContainer.classList.remove('hide');
+      inputContainer.querySelector('.task-item--new').focus();
+    } else {
+      const selectContainer = document.getElementById(
+        `select-container-${issues.title.toLowerCase()}`
+      );
+      selectContainer.classList.remove('hide');
+      selectContainer.querySelector('.task-select').focus();
+    }
+  };
+
+  const submitTask = () => {
+    const inputContainer = document.getElementById(
+      `input-container-${issues.title.toLowerCase()}`
     );
-    console.log('setIssues');
-    console.log(boardData.issues);
-  }, [boardData.issues]);
+    const inputField = inputContainer.querySelector('.task-item--new');
+    if (issues.title === 'Backlog' && inputField.value.trim()) {
+      inputContainer.classList.add('hide');
+      dispatch({
+        type: 'add-backlog',
+        payload: title,
+      });
+      setTitle('');
+      hideShowBtn(issues.title.toLowerCase());
+    } else {
+      const selectContainer = document.getElementById(
+        `select-container-${issues.title.toLowerCase()}`
+      );
+      selectContainer.querySelector('.task-select').value = 'choose';
+      selectContainer.classList.add('hide');
+      hideShowBtn(issues.title.toLowerCase());
+      dispatch({
+        type: 'add-ready',
+        payload: selected,
+      });
+      dispatch({
+        type: 'remove-backlog',
+        payload: selected,
+      });
+      setSelected('');
+      setTitle('ssd');
 
+      let change = new Event('change');
+      document.querySelector('input.task-item--new').dispatchEvent(change);
+
+      // setTitle('asdqwdq');
+      // console.log('SSSSSSSSSSSSSSSSSSSSSSS');
+      // console.log(title);
+    }
+  };
   const handleInputTitle = (e) => {
     setTitle(e.target.value);
   };
   const handleSelectTitle = (e) => {
     setSelected((prev) => (prev = e.target.value));
-    // e.target.value = 'choose';
-    // console.log(selected);
-    // console.log(e.target.value);
   };
 
   return (
     <div className="table-container">
-      <div>{boardData.title}</div>
-      <ul className="task-group">{issues}</ul>
+      <div>{issues.title}</div>
+      <ul className="task-group">
+        {issues.issues.map((issue) => (
+          <li className="task-item" key={issue.id}>
+            {issue.title}
+          </li>
+        ))}
+      </ul>
 
       <div
-        id={`input-container-${boardData.title.toLowerCase()}`}
+        id={`input-container-${issues.title.toLowerCase()}`}
         className="task-item hide"
       >
         <input
@@ -47,7 +93,7 @@ function KanbanTable({ boardData, addTask, submitTask, options }) {
       </div>
 
       <div
-        id={`select-container-${boardData.title.toLowerCase()}`}
+        id={`select-container-${issues.title.toLowerCase()}`}
         className="task-item hide custom-select"
       >
         <select
@@ -58,25 +104,26 @@ function KanbanTable({ boardData, addTask, submitTask, options }) {
           <option className="task-option" value="choose" disabled>
             Choose a task
           </option>
-          {options}
+          {updateFrom &&
+            updateFrom.issues.map((issue) => (
+              <option className="task-option" key={issue.id} value={issue.id}>
+                {issue.title}
+              </option>
+            ))}
         </select>
       </div>
 
       <button
         type="button"
-        className={`task-add task-add-${boardData.title.toLowerCase()}`}
+        className={`task-add task-add-${issues.title.toLowerCase()}`}
         onClick={addTask}
       >
         Add card
       </button>
       <button
         type="button"
-        className={`task-submit task-submit-${boardData.title.toLowerCase()} hide`}
-        onClick={() => {
-          boardData.title === 'Backlog'
-            ? submitTask(title, setTitle)
-            : submitTask(selected, setSelected);
-        }}
+        className={`task-submit task-submit-${issues.title.toLowerCase()} hide`}
+        onClick={submitTask}
       >
         Submit
       </button>

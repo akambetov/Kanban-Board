@@ -4,9 +4,10 @@ import React, { useReducer } from 'react';
 import reducer from './reducer/reducer';
 import { TaskContext } from './context/taskContext';
 import Container from './components/Container';
+import Navbar from './components/Navbar/Navbar';
 import BacklogTable from './components/Boards/BacklogTable';
 import ReadyTable from './components/Boards/ReadyTable';
-import Navbar from './components/Navbar/Navbar';
+import BaseKanbanTable from './components/Boards/BaseKanbanTable';
 
 const KanbanMock = {
   backlog: {
@@ -58,37 +59,35 @@ const KanbanMock = {
 };
 
 function App() {
-  // const [allTasks] = useState(KanbanMock);
   const [state, dispatch] = useReducer(reducer, KanbanMock);
-  // console.log(state);
   return (
     <>
       <Navbar />
 
       <Container>
         <TaskContext.Provider value={{ state, dispatch }}>
-          <BacklogTable />
-          <ReadyTable />
+          <BacklogTable
+            renderContent={(data, dispatch) => (
+              <BaseKanbanTable
+                issues={data}
+                dispatch={dispatch}
+                updateFrom={null}
+              />
+            )}
+          />
+          <ReadyTable
+            renderContent={(data, dispatch, updateFromBacklog) => (
+              <BaseKanbanTable
+                issues={data}
+                dispatch={dispatch}
+                updateFrom={updateFromBacklog}
+              />
+            )}
+          />
+          {/* <ReadyTable /> */}
         </TaskContext.Provider>
       </Container>
     </>
-
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.js</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    // </div>
   );
 }
 
