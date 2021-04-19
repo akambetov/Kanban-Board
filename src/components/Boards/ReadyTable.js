@@ -5,31 +5,19 @@ import hideShowBtn from '../../utils/hideShowBtn';
 
 function Ready() {
   const { state, dispatch } = useContext(TaskContext);
-  // const [ready, setReady] = useState(state.ready);
-  // const ready = state.ready;
+  // const [ready, setBacklog] = useState(state.ready);
+
+  // useEffect(() => {
+  //   setBacklog(state.ready);
+  //   console.log('Ready use effect')
+  //   console.log(ready)
+  // });
 
   const [options, setOptions] = useState();
-  // useEffect(() => {
-  //   // if (state.backlog.issues) {
-  //   setOptions(
-  //     state.backlog.issues.map((issue) => (
-  //       <option className="task-option" key={issue.id}>
-  //         {issue.title}
-  //       </option>
-  //     ))
-  //   );
-  //   console.log(options);
-  //   // }
-  // }, [state.ready.issue]);
 
   const addTask = () => {
     hideShowBtn(state, state.ready.title.toLowerCase());
-
-    // if (boardData.title === 'Backlog') {
-    // const inputContainer = document.getElementById('inputContainer');
-    // inputContainer.classList.remove('hide');
-    // inputContainer.querySelector('.task-item--new').focus();
-    // } else {
+    
     const selectContainer = document.getElementById(
       `select-container-${state.ready.title.toLowerCase()}`
     );
@@ -45,22 +33,9 @@ function Ready() {
         </option>
       ))
     );
-    // }
   };
 
   const submitTask = (selected, setSelected) => {
-    // const inputContainer = document.getElementById('inputContainer');
-    // const inputField = inputContainer.querySelector('.task-item--new');
-    // hideShowBtn(state);
-    // if (/* boardData.title === 'Backlog' && */ inputField.value.trim()) {
-    //   inputContainer.classList.add('hide');
-    //   dispatch({
-    //     type: 'add-backlog',
-    //     payload: title,
-    //   });
-    //   setTitle('');
-    // }
-    // else {
     const selectContainer = document.getElementById(
       `select-container-${state.ready.title.toLowerCase()}`
     );
@@ -72,29 +47,9 @@ function Ready() {
       payload: selected,
     });
     setSelected('');
-
-    // // let event = new Event('change');
-    // console.log(document.querySelector('input.task-item--new'));
-
-    // let event = document.createEvent('HTMLEvents');
-    // event.initEvent('change', true, false);
-
-    // document.querySelector('input.task-item--new').dispatchEvent(event);
-    // state.backlog.issues.map((issue) => (
-    //   <li className="task-item" key={issue.id}>
-    //     {issue.title}
-    //   </li>
-    // ));
-    // setIssues(
-    //   state[boardData.updateFrom].issues.map((issue) => (
-    //     <li className="task-item" key={issue.id}>
-    //       {issue.title}
-    //     </li>
-    //   ))
-    // );
+  
     console.log(state);
     console.log(selected);
-    // console.log(issues);
   };
 
   return (

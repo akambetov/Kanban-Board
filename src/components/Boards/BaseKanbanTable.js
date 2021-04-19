@@ -3,7 +3,7 @@ import { TaskContext } from '../../context/taskContext';
 
 function KanbanTable({ boardData, addTask, submitTask, options }) {
   const [issues, setIssues] = useState();
-  const [title, setTitle] = useState();
+  const [title, setTitle] = useState('');
   const [selected, setSelected] = useState(null); // null
   const { state } = useContext(TaskContext);
 
@@ -17,16 +17,14 @@ function KanbanTable({ boardData, addTask, submitTask, options }) {
     );
     console.log('setIssues');
     console.log(boardData.issues);
-  }, [boardData.issues]);
+    console.log(state.backlog.issues);
+  }, [boardData.issues, state.backlog.issues]);
 
   const handleInputTitle = (e) => {
     setTitle(e.target.value);
   };
   const handleSelectTitle = (e) => {
     setSelected((prev) => (prev = e.target.value));
-    // e.target.value = 'choose';
-    // console.log(selected);
-    // console.log(e.target.value);
   };
 
   return (
