@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import hideShowBtn from '../../utils/hideShowBtn';
 
-function KanbanTable({ issues, dispatch, updateFrom }) {
+function BoardTemplate({ issues, dispatch, updateFrom, changeTrigger }) {
   const [title, setTitle] = useState('');
   const [selected, setSelected] = useState(null);
+  useEffect(()=>{
+    changeTrigger(true);
+  },[title, selected]);
 
   const addTask = () => {
     hideShowBtn(issues.title.toLowerCase());
@@ -28,6 +31,7 @@ function KanbanTable({ issues, dispatch, updateFrom }) {
       `input-container-${issues.title.toLowerCase()}`
     );
     const inputField = inputContainer.querySelector('.task-item--new');
+
     if (issues.title === 'Backlog' && inputField.value.trim()) {
       inputContainer.classList.add('hide');
       dispatch({
@@ -36,7 +40,7 @@ function KanbanTable({ issues, dispatch, updateFrom }) {
       });
       setTitle('');
       hideShowBtn(issues.title.toLowerCase());
-    } else {
+    } else if (issues.title !== 'Backlog'){
       const selectContainer = document.getElementById(
         `select-container-${issues.title.toLowerCase()}`
       );
@@ -44,22 +48,17 @@ function KanbanTable({ issues, dispatch, updateFrom }) {
       selectContainer.classList.add('hide');
       hideShowBtn(issues.title.toLowerCase());
       dispatch({
-        type: 'add-ready',
+        type: 'add',
         payload: selected,
+        addTo: issues.title.toLowerCase(),
+        addFrom: issues.updateFromTable
       });
       dispatch({
-        type: 'remove-backlog',
+        type: 'remove',
         payload: selected,
+        removeFrom: issues.updateFromTable
       });
       setSelected('');
-      setTitle('ssd');
-
-      let change = new Event('change');
-      document.querySelector('input.task-item--new').dispatchEvent(change);
-
-      // setTitle('asdqwdq');
-      // console.log('SSSSSSSSSSSSSSSSSSSSSSS');
-      // console.log(title);
     }
   };
   const handleInputTitle = (e) => {
@@ -131,4 +130,4 @@ function KanbanTable({ issues, dispatch, updateFrom }) {
   );
 }
 
-export default KanbanTable;
+export default BoardTemplate;
