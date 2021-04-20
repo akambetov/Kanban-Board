@@ -1,94 +1,106 @@
-// import logo from './logo.svg';
-// import './App.css';
 import React, { useReducer } from 'react';
 import reducer from './reducer/reducer';
 import { TaskContext } from './context/taskContext';
 import Container from './components/Container';
-import BacklogTable from './components/Boards/BacklogTable';
-import ReadyTable from './components/Boards/ReadyTable';
 import Navbar from './components/Navbar/Navbar';
+import BoardTemplate from './components/Boards/BoardTemplate';
+import MainBoard from './components/Boards/MainBoard';
 
 const KanbanMock = {
   backlog: {
     title: 'Backlog',
-    // updateFrom: 'user input',
+    updateFromTable: null,
     issues: [
       {
         id: 'backlog-task1',
         title: 'Sprint bugfix 1',
         desc: 'lorem lorem lorem lorem',
-        ready: false,
       },
       {
         id: 'backlog-task2',
         title: 'Sprint bugfix 2',
         desc: 'lorem lorem lorem lorem',
-        ready: false,
       },
       {
         id: 'backlog-task3',
         title: 'Sprint bugfix 3',
         desc: 'lorem lorem lorem lorem',
-        ready: false,
       },
       {
         id: 'backlog-task4',
         title: 'Sprint bugfix 4',
         desc: 'lorem lorem lorem lorem',
-        ready: false,
       },
     ],
   },
 
   ready: {
     title: 'Ready',
-    updateFrom: 'backlog',
+    updateFromTable: 'backlog',
     issues: [
       {
         id: 'ready-task1',
         title: 'Ready bugfix 1',
         desc: 'lorem lorem lorem lorem',
-        ready: true,
       },
-      // { id: 'ready-task2', title: 'Ready bugfix 2', desc: 'lorem lorem lorem lorem' },
+      { id: 'ready-task2', title: 'Ready bugfix 2', desc: 'lorem lorem lorem lorem' },
       // { id: 'ready-task3', title: 'Ready bugfix 3', desc: 'lorem lorem lorem lorem' },
       // { id: 'ready-task4', title: 'Ready bugfix 4', desc: 'lorem lorem lorem lorem' },
+    ],
+  },
+
+  progress: {
+    title: 'Progress',
+    updateFromTable: 'ready',
+    issues: [
+      {
+        id: 'progress-task1',
+        title: 'Progress bugfix 1',
+        desc: 'lorem lorem lorem lorem',
+      },
+      // { id: 'progress-task2', title: 'Progress bugfix 2', desc: 'lorem lorem lorem lorem' },
+      // { id: 'progress-task3', title: 'Progress bugfix 3', desc: 'lorem lorem lorem lorem' },
+      // { id: 'progress-task4', title: 'Progress bugfix 4', desc: 'lorem lorem lorem lorem' },
+    ],
+  },
+
+  finish: {
+    title: 'Finish',
+    updateFromTable: 'progress',
+    issues: [
+      {
+        id: 'finish-task1',
+        title: 'Finish bugfix 1',
+        desc: 'lorem lorem lorem lorem',
+      },
+      // { id: 'progress-task2', title: 'Finish bugfix 2', desc: 'lorem lorem lorem lorem' },
+      // { id: 'progress-task3', title: 'Finish bugfix 3', desc: 'lorem lorem lorem lorem' },
+      // { id: 'progress-task4', title: 'Finish bugfix 4', desc: 'lorem lorem lorem lorem' },
     ],
   },
 };
 
 function App() {
-  // const [allTasks] = useState(KanbanMock);
   const [state, dispatch] = useReducer(reducer, KanbanMock);
-  // console.log(state);
   return (
     <>
       <Navbar />
 
       <Container>
         <TaskContext.Provider value={{ state, dispatch }}>
-          <BacklogTable />
-          <ReadyTable />
+          <MainBoard 
+            renderContent={(data, dispatch, updateFrom, changeTrigger) =>
+              <BoardTemplate 
+                issues={data}
+                dispatch={dispatch}
+                updateFrom={updateFrom}
+                changeTrigger={changeTrigger}
+              />
+            }
+          />
         </TaskContext.Provider>
       </Container>
     </>
-
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.js</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    // </div>
   );
 }
 
