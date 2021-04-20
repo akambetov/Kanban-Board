@@ -1,5 +1,6 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
 @import './settings';
 @import './components/kanban-table';
-@import './components/navigation/';
-@import './components/container/';
+@import './components/navigation';
+@import './components/container';
+@import './components/custom-select';

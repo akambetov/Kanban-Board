@@ -5,10 +5,11 @@ import Container from './components/Container';
 import Navbar from './components/Navbar/Navbar';
 import BoardTemplate from './components/Boards/BoardTemplate';
 import MainBoard from './components/Boards/MainBoard';
+import CustomSelect from './components/CustomSelect'
 
 const KanbanMock = {
   backlog: {
-    title: 'Backlog',
+    title: 'backlog',
     updateFromTable: null,
     issues: [
       {
@@ -35,7 +36,7 @@ const KanbanMock = {
   },
 
   ready: {
-    title: 'Ready',
+    title: 'ready',
     updateFromTable: 'backlog',
     issues: [
       {
@@ -50,7 +51,7 @@ const KanbanMock = {
   },
 
   progress: {
-    title: 'Progress',
+    title: 'progress',
     updateFromTable: 'ready',
     issues: [
       {
@@ -65,7 +66,7 @@ const KanbanMock = {
   },
 
   finish: {
-    title: 'Finish',
+    title: 'finish',
     updateFromTable: 'progress',
     issues: [
       {
@@ -100,6 +101,8 @@ function App() {
           />
         </TaskContext.Provider>
       </Container>
+
+        <CustomSelect issues={state.backlog}/>
     </>
   );
 }

@@ -1,34 +1,37 @@
 import React, { useEffect, useState } from 'react';
+import CustomSelect from  '../CustomSelect';
 import hideShowBtn from '../../utils/hideShowBtn';
 
 function BoardTemplate({ issues, dispatch, updateFrom, changeTrigger }) {
   const [title, setTitle] = useState('');
   const [selected, setSelected] = useState(null);
+  
   useEffect(()=>{
     changeTrigger(true);
+    console.log(issues)
   },[title, selected]);
 
   const addTask = () => {
-    hideShowBtn(issues.title.toLowerCase());
+    hideShowBtn(issues.title);
 
     if (issues.title === 'Backlog') {
       const inputContainer = document.getElementById(
-        `input-container-${issues.title.toLowerCase()}`
+        `input-container-${issues.title}`
       );
       inputContainer.classList.remove('hide');
       inputContainer.querySelector('.task-item--new').focus();
     } else {
       const selectContainer = document.getElementById(
-        `select-container-${issues.title.toLowerCase()}`
+        `select-container-${issues.title}`
       );
       selectContainer.classList.remove('hide');
-      selectContainer.querySelector('.task-select').focus();
+      // selectContainer.querySelector('.task-select').focus();
     }
   };
 
   const submitTask = () => {
     const inputContainer = document.getElementById(
-      `input-container-${issues.title.toLowerCase()}`
+      `input-container-${issues.title}`
     );
     const inputField = inputContainer.querySelector('.task-item--new');
 
@@ -39,18 +42,18 @@ function BoardTemplate({ issues, dispatch, updateFrom, changeTrigger }) {
         payload: title,
       });
       setTitle('');
-      hideShowBtn(issues.title.toLowerCase());
+      hideShowBtn(issues.title);
     } else if (issues.title !== 'Backlog'){
       const selectContainer = document.getElementById(
-        `select-container-${issues.title.toLowerCase()}`
+        `select-container-${issues.title}`
       );
-      selectContainer.querySelector('.task-select').value = 'choose';
+      // selectContainer.querySelector('.task-select').value = 'choose';
       selectContainer.classList.add('hide');
-      hideShowBtn(issues.title.toLowerCase());
+      hideShowBtn(issues.title);
       dispatch({
         type: 'add',
         payload: selected,
-        addTo: issues.title.toLowerCase(),
+        addTo: issues.title,
         addFrom: issues.updateFromTable
       });
       dispatch({
@@ -61,16 +64,25 @@ function BoardTemplate({ issues, dispatch, updateFrom, changeTrigger }) {
       setSelected('');
     }
   };
+
   const handleInputTitle = (e) => {
     setTitle(e.target.value);
   };
-  const handleSelectTitle = (e) => {
-    setSelected((prev) => (prev = e.target.value));
+  
+  const handleSelectTitle = (value) => {
+    setSelected((prev) => (prev = value));
   };
+  // const closeSelect = () => {
+  //   const selectItems = document.querySelectorAll('.custom-select-items');
+  //   const seletcField = document.querySelectorAll('.custom-select-field');
+  //   Array.prototype.forEach.call(selectItems, (item) => {
+  //       item.classList.add('hide');
+  //   });
+  // }
 
   return (
     <div className="table-container">
-      <div>{issues.title}</div>
+      <div><span style={{'textTransform': "capitalize"}}>{issues.title}</span></div>
       <ul className="task-group">
         {issues.issues.map((issue) => (
           <li className="task-item" key={issue.id}>
@@ -80,7 +92,7 @@ function BoardTemplate({ issues, dispatch, updateFrom, changeTrigger }) {
       </ul>
 
       <div
-        id={`input-container-${issues.title.toLowerCase()}`}
+        id={`input-container-${issues.title}`}
         className="task-item hide"
       >
         <input
@@ -92,10 +104,11 @@ function BoardTemplate({ issues, dispatch, updateFrom, changeTrigger }) {
       </div>
 
       <div
-        id={`select-container-${issues.title.toLowerCase()}`}
-        className="task-item hide custom-select"
+        id={`select-container-${issues.title}`}
+        className="hide"
+        // onClick={closeSelect}
       >
-        <select
+        {/* <select
           className="task-select"
           onChange={handleSelectTitle}
           defaultValue={'choose'}
@@ -109,19 +122,20 @@ function BoardTemplate({ issues, dispatch, updateFrom, changeTrigger }) {
                 {issue.title}
               </option>
             ))}
-        </select>
+        </select> */}
+        <CustomSelect issues={updateFrom} handleSelectTitle={handleSelectTitle}/>
       </div>
 
       <button
         type="button"
-        className={`task-add task-add-${issues.title.toLowerCase()}`}
+        className={`task-add task-add-${issues.title}`}
         onClick={addTask}
       >
         Add card
       </button>
       <button
         type="button"
-        className={`task-submit task-submit-${issues.title.toLowerCase()} hide`}
+        className={`task-submit task-submit-${issues.title} hide`}
         onClick={submitTask}
       >
         Submit
