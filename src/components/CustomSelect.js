@@ -1,7 +1,7 @@
 import React from 'react';
-export default ({issues, handleSelectTitle}) => {
-    if (!issues) return null;
-    console.log(issues)
+export default ({updateFrom, handleSelectTitle}) => {
+    if (!updateFrom) return null;
+    console.log(updateFrom)
 
     const handleSelectClick = () => {
         const selectItems = document.querySelectorAll('.custom-select-items')
@@ -24,20 +24,21 @@ export default ({issues, handleSelectTitle}) => {
 
     return (
         <>
-        <div className='custom-select-container' data-issue={`${issues}`}>
-            <div className='custom-select-field' onClick={handleSelectClick}>
+        <div className='custom-select-container' data-issue-type={`select-container-${updateFrom.title}`}>
+            <div className='custom-select-field' onClick={handleSelectClick} data-issue-type={`select-field-${updateFrom.title}`}>
                 {/* Dadadw */}
             </div>
-            {issues.issues.map((issue) => (
+            {updateFrom.issues.map((issue) => (
                 <div className='custom-select-items hide' key={issue.id}>
                     <label>
                         {issue.title}
                         <input 
                             type='radio'
                             id={`${issue.id}`}
-                            name={issues.title}
+                            name={updateFrom.title}
                             onClick={handleItemClick} 
                             value={issue.id}
+                            // style={{'display': 'none'}}
                         />
                     </label>
                 </div>))}

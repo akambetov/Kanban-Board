@@ -14,7 +14,7 @@ function BoardTemplate({ issues, dispatch, updateFrom, changeTrigger }) {
   const addTask = () => {
     hideShowBtn(issues.title);
 
-    if (issues.title === 'Backlog') {
+    if (issues.title === 'backlog') {
       const inputContainer = document.getElementById(
         `input-container-${issues.title}`
       );
@@ -35,7 +35,7 @@ function BoardTemplate({ issues, dispatch, updateFrom, changeTrigger }) {
     );
     const inputField = inputContainer.querySelector('.task-item--new');
 
-    if (issues.title === 'Backlog' && inputField.value.trim()) {
+    if (issues.title === 'backlog' && inputField.value.trim()) {
       inputContainer.classList.add('hide');
       dispatch({
         type: 'add-backlog',
@@ -43,7 +43,7 @@ function BoardTemplate({ issues, dispatch, updateFrom, changeTrigger }) {
       });
       setTitle('');
       hideShowBtn(issues.title);
-    } else if (issues.title !== 'Backlog'){
+    } else if (issues.title !== 'backlog'){
       const selectContainer = document.getElementById(
         `select-container-${issues.title}`
       );
@@ -123,7 +123,7 @@ function BoardTemplate({ issues, dispatch, updateFrom, changeTrigger }) {
               </option>
             ))}
         </select> */}
-        <CustomSelect issues={updateFrom} handleSelectTitle={handleSelectTitle}/>
+        <CustomSelect updateFrom={updateFrom} handleSelectTitle={handleSelectTitle}/>
       </div>
 
       <button
