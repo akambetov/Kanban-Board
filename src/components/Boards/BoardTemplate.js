@@ -8,7 +8,7 @@ function BoardTemplate({ issues, dispatch, updateFrom, changeTrigger }) {
   
   useEffect(()=>{
     changeTrigger(true);
-    console.log(issues)
+    console.log(issues);
   },[title, selected]);
 
   const addTask = () => {
@@ -25,7 +25,6 @@ function BoardTemplate({ issues, dispatch, updateFrom, changeTrigger }) {
         `select-container-${issues.title}`
       );
       selectContainer.classList.remove('hide');
-      // selectContainer.querySelector('.task-select').focus();
     }
   };
 
@@ -47,7 +46,7 @@ function BoardTemplate({ issues, dispatch, updateFrom, changeTrigger }) {
       const selectContainer = document.getElementById(
         `select-container-${issues.title}`
       );
-      // selectContainer.querySelector('.task-select').value = 'choose';
+      const selectField = document.querySelector(`[data-issue-type=select-field-${issues.title}]`);
       selectContainer.classList.add('hide');
       hideShowBtn(issues.title);
       dispatch({
@@ -61,6 +60,7 @@ function BoardTemplate({ issues, dispatch, updateFrom, changeTrigger }) {
         payload: selected,
         removeFrom: issues.updateFromTable
       });
+      selectField.innerText="Choose the task";
       setSelected('');
     }
   };
@@ -72,14 +72,6 @@ function BoardTemplate({ issues, dispatch, updateFrom, changeTrigger }) {
   const handleSelectTitle = (value) => {
     setSelected((prev) => (prev = value));
   };
-  // const closeSelect = () => {
-  //   const selectItems = document.querySelectorAll('.custom-select-items');
-  //   const seletcField = document.querySelectorAll('.custom-select-field');
-  //   Array.prototype.forEach.call(selectItems, (item) => {
-  //       item.classList.add('hide');
-  //   });
-  // }
-
   return (
     <div className="table-container">
       <div><span style={{'textTransform': "capitalize"}}>{issues.title}</span></div>
@@ -105,8 +97,7 @@ function BoardTemplate({ issues, dispatch, updateFrom, changeTrigger }) {
 
       <div
         id={`select-container-${issues.title}`}
-        className="hide"
-        // onClick={closeSelect}
+        className="hide select-container"
       >
         {/* <select
           className="task-select"
@@ -123,7 +114,7 @@ function BoardTemplate({ issues, dispatch, updateFrom, changeTrigger }) {
               </option>
             ))}
         </select> */}
-        <CustomSelect updateFrom={updateFrom} handleSelectTitle={handleSelectTitle}/>
+        <CustomSelect issuesType={issues.title} updateFrom={updateFrom} handleSelectTitle={handleSelectTitle} />
       </div>
 
       <button
