@@ -42,7 +42,7 @@
   background-color: var(--task-add-hover-bg);
 }
 .task-add::before {
-  content: url('../../../../img/plus.svg');
+  content: url('../../../img/plus.svg');
   display: inline;
   position: absolute;
   left: 5px;

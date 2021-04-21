@@ -3,25 +3,36 @@
     display: flex;
     flex-direction: column;
     border-radius: 5px;
-    /* margin-top: -1rem; */
-    /* padding: 1rem; */
-    /* background-color: var(--table-container-bg); */
-    /* background-color: red; */
 }
 
 .custom-select-field {
+  position: relative;
   background-color: var(--list-item-bg);
   border-radius: 5px;
   padding: 5px;
   line-height: 1.5rem;
   height: 2rem;
-  /* margin: 10px 0; */
-  /* padding-left: 5px; */
+  color: var(--task-add-cl);
+}
+.select-icon--down::after {
+    content: url('../../../img/select-arrow-down.svg');
+    margin-left: 2rem;
+}
+.select-icon--up::after {
+    content: url('../../../img/select-arrow-up.svg');
+    margin-left: 2rem;
 }
 
 /* .custom-select-items {
 } */
 
+.select-label {
+    text-align: center;
+    width: 100%;
+}
+.select-input {
+    display: none;
+}
 .hide {
     display: none;
 }

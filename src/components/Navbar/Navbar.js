@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import userAvatar from '../../img/user-avatar.svg';
-import arrowDown from '../../img/arrow-down.svg';
-import arrowUp from '../../img/arrow-up.svg';
+import userAvatar from '../../assets/img/user-avatar.svg';
+import arrowDown from '../../assets/img/arrow-down.svg';
+import arrowUp from '../../assets/img/arrow-up.svg';
 
 function KanbanNavbar() {
   const [isOpenDropdown, setIsOpenDropdown] = useState(() => false);
