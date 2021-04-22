@@ -1,10 +1,7 @@
 .container-main {
   position: relative;
-
   max-width: 1182px;
   margin: 0 auto;
-  border: 1px solid rebeccapurple;
-
   padding: 1rem;
 }
 
