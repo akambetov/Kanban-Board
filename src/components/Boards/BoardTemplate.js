@@ -1,30 +1,42 @@
 import React, { useEffect, useState } from 'react';
-import CustomSelect from  '../CustomSelect';
+import CustomSelect from '../CustomSelect';
 import hideShowBtn from '../../utils/hideShowBtn';
 
 function BoardTemplate({ issues, dispatch, updateFrom, changeTrigger }) {
   const [title, setTitle] = useState('');
   const [selected, setSelected] = useState(null);
-  
-  useEffect(()=>{
+
+  useEffect(() => {
     changeTrigger(true);
     console.log(issues);
-  },[title, selected]);
+  }, [title, selected]);
 
   const addTask = () => {
     hideShowBtn(issues.title);
+    const inputContainer = document.getElementById(
+      `input-container-${issues.title}`
+    );
+    const selectContainer = document.getElementById(
+      `select-container-${issues.title}`
+    );
 
     if (issues.title === 'backlog') {
-      const inputContainer = document.getElementById(
-        `input-container-${issues.title}`
-      );
       inputContainer.classList.remove('hide');
       inputContainer.querySelector('.task-item--new').focus();
     } else {
-      const selectContainer = document.getElementById(
-        `select-container-${issues.title}`
-      );
       selectContainer.classList.remove('hide');
+    }
+
+    // Стили из за кастомного селекта
+    const tableContainer = document.querySelector(
+      `[data-table-type=table-${issues.title}]`
+    );
+    if (tableContainer.offsetHeight !== tableContainer.scrollHeight) {
+      inputContainer.style.marginRight = '28px';
+      selectContainer.style.marginRight = '28px';
+    } else {
+      inputContainer.style.marginRight = '16px';
+      selectContainer.style.marginRight = '16px';
     }
   };
 
@@ -42,25 +54,27 @@ function BoardTemplate({ issues, dispatch, updateFrom, changeTrigger }) {
       });
       setTitle('');
       hideShowBtn(issues.title);
-    } else if (issues.title !== 'backlog'){
+    } else if (issues.title !== 'backlog') {
       const selectContainer = document.getElementById(
         `select-container-${issues.title}`
       );
-      const selectField = document.querySelector(`[data-issue-type=select-field-${issues.title}]`);
+      const selectField = document.querySelector(
+        `[data-issue-type=select-field-${issues.title}]`
+      );
       selectContainer.classList.add('hide');
       hideShowBtn(issues.title);
       dispatch({
         type: 'add',
         payload: selected,
         addTo: issues.title,
-        addFrom: issues.updateFromTable
+        addFrom: issues.updateFromTable,
       });
       dispatch({
         type: 'remove',
         payload: selected,
-        removeFrom: issues.updateFromTable
+        removeFrom: issues.updateFromTable,
       });
-      selectField.innerText="Choose the task";
+      selectField.innerText = 'Choose the task';
       setSelected('');
     }
   };
@@ -68,24 +82,31 @@ function BoardTemplate({ issues, dispatch, updateFrom, changeTrigger }) {
   const handleInputTitle = (e) => {
     setTitle(e.target.value);
   };
-  
+
   const handleSelectTitle = (value) => {
     setSelected((prev) => (prev = value));
   };
   return (
-    <div className="table-container">
-      <div><span style={{'textTransform': "capitalize"}}>{issues.title}</span></div>
-      <ul className="task-group">
-        {issues.issues.map((issue) => (
-          <li className="task-item" key={issue.id}>
-            {issue.title}
-          </li>
-        ))}
-      </ul>
+    <div className="table-wrapper">
+      <div
+        className="table-container"
+        data-table-type={`table-${issues.title}`}
+      >
+        <div>
+          <span style={{ textTransform: 'capitalize' }}>{issues.title}</span>
+        </div>
+        <ul className="task-group">
+          {issues.issues.map((issue) => (
+            <li className="task-item" key={issue.id}>
+              {issue.title}
+            </li>
+          ))}
+        </ul>
+      </div>
 
       <div
         id={`input-container-${issues.title}`}
-        className="task-item hide"
+        className="task-item input-container hide"
       >
         <input
           className="task-item--new"
@@ -97,24 +118,13 @@ function BoardTemplate({ issues, dispatch, updateFrom, changeTrigger }) {
 
       <div
         id={`select-container-${issues.title}`}
-        className="hide select-container"
+        className="select-container hide"
       >
-        {/* <select
-          className="task-select"
-          onChange={handleSelectTitle}
-          defaultValue={'choose'}
-        >
-          <option className="task-option" value="choose" disabled>
-            Choose a task
-          </option>
-          {updateFrom &&
-            updateFrom.issues.map((issue) => (
-              <option className="task-option" key={issue.id} value={issue.id}>
-                {issue.title}
-              </option>
-            ))}
-        </select> */}
-        <CustomSelect issuesType={issues.title} updateFrom={updateFrom} handleSelectTitle={handleSelectTitle} />
+        <CustomSelect
+          issuesType={issues.title}
+          updateFrom={updateFrom}
+          handleSelectTitle={handleSelectTitle}
+        />
       </div>
 
       <button
@@ -134,5 +144,4 @@ function BoardTemplate({ issues, dispatch, updateFrom, changeTrigger }) {
     </div>
   );
 }
-
 export default BoardTemplate;
