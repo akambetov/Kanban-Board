@@ -2,13 +2,12 @@ import React, { useEffect, useState } from 'react';
 import CustomSelect from '../CustomSelect';
 import hideShowBtn from '../../utils/hideShowBtn';
 
-function BoardTemplate({ issues, dispatch, updateFrom, changeTrigger }) {
+function BoardTemplate({ issues, dispatch, updateFrom, changeTrigger, getTaskData }) {
   const [title, setTitle] = useState('');
   const [selected, setSelected] = useState(null);
 
   useEffect(() => {
     changeTrigger(true);
-    console.log(issues);
   }, [title, selected]);
 
   const addTask = () => {
@@ -86,6 +85,17 @@ function BoardTemplate({ issues, dispatch, updateFrom, changeTrigger }) {
   const handleSelectTitle = (value) => {
     setSelected((prev) => (prev = value));
   };
+
+  const handleTaskInfo = (taskData) => {
+    getTaskData(taskData);
+    
+    // Выключаю скролл по докуенту, когда модалка открыта
+    document.body.style.overflowY = 'hidden';
+
+    // Затемняю документ, когда модалка открыта
+    document.querySelector('#root').style.backgroundColor = 'rgba(0, 0, 0, .5)';
+    document.querySelector('.navbar').style.backgroundColor = 'rgba(0, 0, 0, .5)';
+  }
   return (
     <div className="table-wrapper">
       <div
@@ -97,7 +107,7 @@ function BoardTemplate({ issues, dispatch, updateFrom, changeTrigger }) {
         </div>
         <ul className="task-group">
           {issues.issues.map((issue) => (
-            <li className="task-item" key={issue.id}>
+            <li className="task-item" key={issue.id} onClick = {() => handleTaskInfo({...issue, isOpen: true})}>
               {issue.title}
             </li>
           ))}
