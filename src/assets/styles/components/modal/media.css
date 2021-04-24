@@ -1,0 +1,11 @@
+@media (max-width: 1230px) {
+  .modal-wrapper {
+    width: 97%;
+    left: unset;
+  }
+}
+/* @media (max-width: 1031px) {
+  .modal-wrapper {
+    top: 5%;
+  }
+} */

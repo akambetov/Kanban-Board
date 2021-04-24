@@ -90,12 +90,13 @@ function App() {
       <Container>
         <TaskContext.Provider value={{ state, dispatch }}>
           <MainBoard 
-            renderContent={(data, dispatch, updateFrom, changeTrigger) =>
+            renderContent={(data, dispatch, updateFrom, changeTrigger, getTaskData) =>
               <BoardTemplate 
                 issues={data}
                 dispatch={dispatch}
                 updateFrom={updateFrom}
                 changeTrigger={changeTrigger}
+                getTaskData={getTaskData}
               />
             }
           />

@@ -11,7 +11,11 @@
   --task-add-hover-bg: #ffffff;
   --task-submit-bg: #0079bf;
 
-  --scroll-cl: #cbcbcb;
+  /* custom scroll */
+  --scroll-thumb-bg: #cbcbcb;
+  --scroll-track-bg: #ffffff;
+  
+  --modal-bg: #ffffff;
 }
 
 .outline-none {

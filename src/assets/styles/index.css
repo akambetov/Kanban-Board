@@ -1,9 +1,10 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
-@import './settings';
-@import './components/kanban-table';
-@import './components/navigation';
-@import './components/container';
-@import './components/custom-select';
+@import './settings/index.css';
+@import './components/kanban-table/index.css';
+@import './components/navigation/index.css';
+@import './components/container/index.css';
+@import './components/custom-select/index.css';
+@import './components/modal/index.css';
 
 body {
   background-color: var(--container-main-bg);
