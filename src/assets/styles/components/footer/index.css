@@ -1,12 +1,2 @@
-.footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  color: var(--footer-color);
-  font-size: 1.125rem;
-  background-color: var(--nav-bg);
-}
+@import url('./footer.css');
+@import url('./media.css');

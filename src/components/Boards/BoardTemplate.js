@@ -94,8 +94,9 @@ function BoardTemplate({ issues, dispatch, updateFrom, changeTrigger, getTaskDat
 
     // Затемняю документ, когда модалка открыта
     document.querySelector('#root').style.backgroundColor = 'rgba(0, 0, 0, .5)';
-    document.querySelector('.navbar').style.backgroundColor = '#024871';
-    document.querySelector('.footer').style.backgroundColor = '#024871';
+    document.querySelector('.navbar').style.backgroundColor = 'rgba(0, 41, 66, 1)';
+    document.querySelector('.footer').style.backgroundColor = 'rgba(0, 41, 66, 1)';
+    document.querySelectorAll('.table-wrapper').forEach((item) => item.style.opacity = '.5');
   }
   return (
     <div className="table-wrapper">

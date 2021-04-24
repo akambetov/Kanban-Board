@@ -41,6 +41,7 @@ function Modal({ taskData, setTaskData }) {
     document.querySelector('#root').style.backgroundColor = '';
     document.querySelector('.navbar').style.backgroundColor = '';
     document.querySelector('.footer').style.backgroundColor = '';
+    document.querySelectorAll('.table-wrapper').forEach((item) => item.style.opacity = '');
   }
 
 

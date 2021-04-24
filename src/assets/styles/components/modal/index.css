@@ -3,7 +3,8 @@
   left: 50%;
   transform: translateX(-50%);
   width: 95%;
-  height: 80vh;
+  height: 70vh;
+  z-index: 3;
 
   background-color: var(--modal-bg);
   border-radius: 5px;
