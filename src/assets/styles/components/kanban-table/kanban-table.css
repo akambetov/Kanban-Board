@@ -54,9 +54,6 @@
   margin-bottom: 0;
   margin-right: 1rem;
 }
-/* .task-group::-webkit-scrollbar {
-  display: none;
-} */
 .task-add,
 .task-submit {
   padding: 0;
@@ -81,7 +78,9 @@
   position: absolute;
   left: 5px;
 }
-
+.input-container {
+  margin-top: 0;
+}
 .hide {
   display: none;
 }

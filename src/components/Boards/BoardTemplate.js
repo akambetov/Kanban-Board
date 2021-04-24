@@ -8,7 +8,6 @@ function BoardTemplate({ issues, dispatch, updateFrom, changeTrigger }) {
 
   useEffect(() => {
     changeTrigger(true);
-    console.log(issues);
   }, [title, selected]);
 
   const addTask = () => {
