@@ -25,6 +25,7 @@ function Modal({ taskData, setTaskData }) {
     // Убираю затемнение
     document.querySelector('#root').style.backgroundColor = '';
     document.querySelector('.navbar').style.backgroundColor = '';
+    document.querySelector('.footer').style.backgroundColor = '';
   }
 
   return (

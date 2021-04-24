@@ -5,6 +5,7 @@
 @import './components/container/index.css';
 @import './components/custom-select/index.css';
 @import './components/modal/index.css';
+@import './components/footer/index.css';
 
 body {
   background-color: var(--container-main-bg);

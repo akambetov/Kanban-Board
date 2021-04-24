@@ -95,6 +95,7 @@ function BoardTemplate({ issues, dispatch, updateFrom, changeTrigger, getTaskDat
     // Затемняю документ, когда модалка открыта
     document.querySelector('#root').style.backgroundColor = 'rgba(0, 0, 0, .5)';
     document.querySelector('.navbar').style.backgroundColor = 'rgba(0, 0, 0, .5)';
+    document.querySelector('.footer').style.backgroundColor = 'rgba(0, 0, 0, .5)';
   }
   return (
     <div className="table-wrapper">

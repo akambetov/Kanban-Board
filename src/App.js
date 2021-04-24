@@ -1,11 +1,12 @@
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import reducer from './reducer/reducer';
 import { TaskContext } from './context/taskContext';
 import Container from './components/Container';
 import Navbar from './components/Navbar/Navbar';
 import BoardTemplate from './components/Boards/BoardTemplate';
 import MainBoard from './components/Boards/MainBoard';
-import CustomSelect from './components/CustomSelect'
+import CustomSelect from './components/CustomSelect';
+import Footer from './components/Footer';
 
 const KanbanMock = {
   backlog: {
@@ -83,6 +84,11 @@ const KanbanMock = {
 
 function App() {
   const [state, dispatch] = useReducer(reducer, KanbanMock);
+  const [changeTasksCount, setChangeTasksCount] = useState();
+
+  useEffect(() => {
+    setChangeTasksCount(false);
+  }, [changeTasksCount])
   return (
     <>
       <Navbar />
@@ -90,6 +96,7 @@ function App() {
       <Container>
         <TaskContext.Provider value={{ state, dispatch }}>
           <MainBoard 
+            setChangeTasksCount = {setChangeTasksCount}
             renderContent={(data, dispatch, updateFrom, changeTrigger, getTaskData) =>
               <BoardTemplate 
                 issues={data}
@@ -104,6 +111,8 @@ function App() {
       </Container>
 
         <CustomSelect issues={state.backlog}/>
+        
+        <Footer data = {state} />
     </>
   );
 }

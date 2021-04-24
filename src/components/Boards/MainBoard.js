@@ -2,13 +2,14 @@ import React, { useContext, useEffect, useState } from 'react';
 import { TaskContext } from '../../context/taskContext';
 import Modal from '../Modal';
 
-function MainBoard({ renderContent }) {
+function MainBoard({ renderContent, setChangeTasksCount }) {
   const { state, dispatch } = useContext(TaskContext);
   const [changeTrigger, setChangeTrigger] = useState();
   const [modalData, setModalData] = useState({isOpen: false});
 
   useEffect(() => {
       setChangeTrigger(false);
+      setChangeTasksCount(true);
   }, [changeTrigger]);
   
   return (
