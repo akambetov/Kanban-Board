@@ -7,16 +7,31 @@ function Modal({ taskData, setTaskData }) {
   const [windowH, setWindowH] = useState(window.innerHeight)
   const root = document.querySelector('#root');
 
-  // Сравнять высоту #root с высотой window, чтобы корректно затемнить задний фон
-  window.addEventListener('resize', () => {
-    setWindowH(window.innerHeight);
-    if( root.offsetHeight < window.innerHeight) root.style.height = windowH + 'px';
-    else root.style.height = '';
-  })
   useEffect(() => {
     if( root.offsetHeight < window.innerHeight) root.style.height = windowH + 'px';
   }, [windowH]);
 
+  useEffect(() => {
+    window.addEventListener('keydown', closeModatEscape);
+    // Сравнять высоту #root с высотой window, чтобы корректно затемнить задний фон
+    window.addEventListener('resize', windowResize);
+    return () => {
+      window.removeEventListener('keydown', closeModatEscape);
+      window.removeEventListener('resize', windowResize);
+    }
+  }, []);
+
+  const windowResize = () => {
+    setWindowH(window.innerHeight);
+    if( root.offsetHeight < window.innerHeight) root.style.height = windowH + 'px';
+    else root.style.height = '';
+  }
+
+  const closeModatEscape = (e) => {
+    if (e.code === "Escape") {
+      closeModal();
+    }
+  };
   const closeModal = () => {
     setTaskData({isOpen: false});
     // Включаю скролл по докуенту, после закрытия модалки
@@ -27,6 +42,9 @@ function Modal({ taskData, setTaskData }) {
     document.querySelector('.navbar').style.backgroundColor = '';
     document.querySelector('.footer').style.backgroundColor = '';
   }
+
+
+
 
   return (
     <div className="modal-wrapper">

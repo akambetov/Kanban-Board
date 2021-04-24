@@ -94,8 +94,8 @@ function BoardTemplate({ issues, dispatch, updateFrom, changeTrigger, getTaskDat
 
     // Затемняю документ, когда модалка открыта
     document.querySelector('#root').style.backgroundColor = 'rgba(0, 0, 0, .5)';
-    document.querySelector('.navbar').style.backgroundColor = 'rgba(0, 0, 0, .5)';
-    document.querySelector('.footer').style.backgroundColor = 'rgba(0, 0, 0, .5)';
+    document.querySelector('.navbar').style.backgroundColor = '#024871';
+    document.querySelector('.footer').style.backgroundColor = '#024871';
   }
   return (
     <div className="table-wrapper">
@@ -124,6 +124,11 @@ function BoardTemplate({ issues, dispatch, updateFrom, changeTrigger, getTaskDat
           onChange={handleInputTitle}
           value={title}
           placeholder="Title"
+          onKeyDown={(e) => {
+            if (e.code === 'Enter') {
+              submitTask();
+            }
+          }}
         />
       </div>
 
