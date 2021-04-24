@@ -1,2 +1,52 @@
-@import url('./modal.css');
-@import url('./media.css');
+.modal-wrapper {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95%;
+  height: 80vh;
+
+  background-color: var(--modal-bg);
+  border-radius: 5px;
+  padding: 22px 28px;
+  overflow-y: auto;
+}
+.modal-wrapper::-webkit-scrollbar {
+  -webkit-appearance: none;
+  margin-right: -5px;
+  width: 12px;
+}
+.modal-wrapper::-webkit-scrollbar-thumb {
+  border-radius: 15px;
+  background-color: var(--scroll-thumb-bg);
+  box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+}
+.modal-wrapper::-webkit-scrollbar-track {
+  background-color: var(--scroll-track-bg);
+  border-radius: 15px;
+}
+.modal-container {
+  position: relative;
+}
+.modal-close-btn {
+  position: absolute;
+  right: -.5rem;
+  top: -.5rem;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  background: none;
+}
+.modal-close-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.modal-task-title {
+  font-size: 1.5rem;
+  text-align: justify;
+  padding-right: 2rem;
+  margin-bottom: 2rem;
+}
+.modal-task-description {
+  font-size: 1.125rem;
+  width: 50%;
+}

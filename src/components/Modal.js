@@ -1,14 +1,21 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import closeIcon from '../assets/img/close.svg'
 
 function Modal({ taskData, setTaskData }) {
   if (!taskData.isOpen) return null;
-  useEffect(() => {
-    if (window.innerWidth <= 1230) {
-      const modalWrapper = document.querySelector('.modal-wrapper');
-      modalWrapper.style.top=`${window.pageYOffset + 15}px`;
-    }
+
+  const [windowH, setWindowH] = useState(window.innerHeight)
+  const root = document.querySelector('#root');
+
+  // Сравнять высоту #root с высотой window, чтобы корректно затемнить задний фон
+  window.addEventListener('resize', () => {
+    setWindowH(window.innerHeight);
+    if( root.offsetHeight < window.innerHeight) root.style.height = windowH + 'px';
+    else root.style.height = '';
   })
+  useEffect(() => {
+    if( root.offsetHeight < window.innerHeight) root.style.height = windowH + 'px';
+  }, [windowH]);
 
   const closeModal = () => {
     setTaskData({isOpen: false});

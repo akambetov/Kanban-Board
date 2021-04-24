@@ -9,9 +9,3 @@
 body {
   background-color: var(--container-main-bg);
 }
-
-@media (min-width: 1031px) {
-  #root {
-    height: 100vh;
-  }
-}
