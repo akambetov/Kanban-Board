@@ -9,12 +9,3 @@
 body {
   background-color: var(--container-main-bg);
 }
-#root {
-  height: 100vh;
-}
-
-@media (max-width: 1230px) {
-  #root {
-    height: unset;
-  }
-}
