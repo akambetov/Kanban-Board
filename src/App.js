@@ -13,26 +13,10 @@ const KanbanMock = {
     title: 'backlog',
     updateFromTable: null,
     issues: [
-      {
-        id: 'backlog-task1',
-        title: 'Sprint bugfix 1',
-        desc: 'lorem lorem lorem lorem',
-      },
-      {
-        id: 'backlog-task2',
-        title: 'Sprint bugfix 2',
-        desc: 'lorem lorem lorem lorem',
-      },
-      {
-        id: 'backlog-task3',
-        title: 'Sprint bugfix 3',
-        desc: 'lorem lorem lorem lorem',
-      },
-      {
-        id: 'backlog-task4',
-        title: 'Sprint bugfix 4',
-        desc: 'lorem lorem lorem lorem',
-      },
+      // { id: 'backlog-task1', title: 'Sprint bugfix 1', desc: 'lorem lorem lorem lorem' },
+      // { id: 'backlog-task2', title: 'Sprint bugfix 2', desc: 'lorem lorem lorem lorem' },
+      // { id: 'backlog-task3', title: 'Sprint bugfix 3', desc: 'lorem lorem lorem lorem' },
+      // { id: 'backlog-task4', title: 'Sprint bugfix 4', desc: 'lorem lorem lorem lorem' },
     ],
   },
 
@@ -40,12 +24,8 @@ const KanbanMock = {
     title: 'ready',
     updateFromTable: 'backlog',
     issues: [
-      {
-        id: 'ready-task1',
-        title: 'Ready bugfix 1',
-        desc: 'lorem lorem lorem lorem',
-      },
-      { id: 'ready-task2', title: 'Ready bugfix 2', desc: 'lorem lorem lorem lorem' },
+      // { id: 'ready-task1', title: 'Ready bugfix 1', desc: 'lorem lorem lorem lorem' },
+      // { id: 'ready-task2', title: 'Ready bugfix 2', desc: 'lorem lorem lorem lorem' },
       // { id: 'ready-task3', title: 'Ready bugfix 3', desc: 'lorem lorem lorem lorem' },
       // { id: 'ready-task4', title: 'Ready bugfix 4', desc: 'lorem lorem lorem lorem' },
     ],
@@ -55,11 +35,7 @@ const KanbanMock = {
     title: 'progress',
     updateFromTable: 'ready',
     issues: [
-      {
-        id: 'progress-task1',
-        title: 'Progress bugfix 1',
-        desc: 'lorem lorem lorem lorem',
-      },
+      // { id: 'progress-task1', title: 'Progress bugfix 1', desc: 'lorem lorem lorem lorem' },
       // { id: 'progress-task2', title: 'Progress bugfix 2', desc: 'lorem lorem lorem lorem' },
       // { id: 'progress-task3', title: 'Progress bugfix 3', desc: 'lorem lorem lorem lorem' },
       // { id: 'progress-task4', title: 'Progress bugfix 4', desc: 'lorem lorem lorem lorem' },
@@ -70,11 +46,7 @@ const KanbanMock = {
     title: 'finish',
     updateFromTable: 'progress',
     issues: [
-      {
-        id: 'finish-task1',
-        title: 'Finish bugfix 1',
-        desc: 'lorem lorem lorem lorem',
-      },
+      // { id: 'finish-task1', title: 'Finish bugfix 1', desc: 'lorem lorem lorem lorem' },
       // { id: 'progress-task2', title: 'Finish bugfix 2', desc: 'lorem lorem lorem lorem' },
       // { id: 'progress-task3', title: 'Finish bugfix 3', desc: 'lorem lorem lorem lorem' },
       // { id: 'progress-task4', title: 'Finish bugfix 4', desc: 'lorem lorem lorem lorem' },
@@ -83,9 +55,8 @@ const KanbanMock = {
 };
 
 function App() {
-  const [state, dispatch] = useReducer(reducer, KanbanMock);
+  const [state, dispatch] = useReducer(reducer, JSON.parse(localStorage.getItem('tasks')) || KanbanMock);
   const [changeTasksCount, setChangeTasksCount] = useState();
-
   useEffect(() => {
     setChangeTasksCount(false);
   }, [changeTasksCount])
@@ -112,7 +83,7 @@ function App() {
 
         <CustomSelect issues={state.backlog}/>
         
-        <Footer data = {state} />
+      <Footer data = {state} />
     </>
   );
 }

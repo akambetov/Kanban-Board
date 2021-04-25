@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import CustomSelect from '../CustomSelect';
 import hideShowBtn from '../../utils/hideShowBtn';
+import { TaskContext } from '../../context/taskContext';
 
 function BoardTemplate({ issues, dispatch, updateFrom, changeTrigger, getTaskData }) {
+  const {state} = useContext(TaskContext); // Для localStorage
   const [title, setTitle] = useState('');
   const [selected, setSelected] = useState(null);
 
   useEffect(() => {
     changeTrigger(true);
+    localStorage.setItem('tasks', JSON.stringify(state))
   }, [title, selected]);
 
   const addTask = () => {
