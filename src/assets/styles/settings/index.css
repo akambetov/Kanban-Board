@@ -7,7 +7,8 @@
   --list-item-bg: #ffffff;
 
   /*button color*/
-  --task-add-cl: #5e6c84;
+  --task-add-cl: #455163;
+  --task-add-dis-cl: #8692a7;
   --task-add-hover-bg: #ffffff;
   --task-submit-bg: #0079bf;
 

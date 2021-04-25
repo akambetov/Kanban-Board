@@ -151,6 +151,7 @@ function BoardTemplate({ issues, dispatch, updateFrom, changeTrigger, getTaskDat
         type="button"
         className={`task-add task-add-${issues.title}`}
         onClick={addTask}
+        disabled={updateFrom ? updateFrom.issues.length === 0 : false}
       >
         Add card
       </button>

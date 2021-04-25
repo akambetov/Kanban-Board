@@ -76,6 +76,13 @@
 .task-add:hover {
   background-color: var(--task-add-hover-bg);
 }
+.task-add:disabled {
+  color:var(--task-add-dis-cl);
+}
+.task-add:disabled:hover {
+  background-color: transparent;
+  cursor:no-drop;
+}
 .task-add::before {
   content: url('../../../img/plus.svg');
   display: inline;
