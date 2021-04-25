@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import HomePage from '../../views/HomePage'
-import About from '../../views/About'
-import Profile from '../../views/Profile'
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   NavLink
 } from "react-router-dom";
+import HomePage from '../../views/HomePage'
+import About from '../../views/About'
+import Profile from '../../views/Profile'
 import userAvatar from '../../assets/img/user-avatar.svg';
 import arrowDown from '../../assets/img/arrow-down.svg';
 import arrowUp from '../../assets/img/arrow-up.svg';
@@ -54,7 +54,7 @@ function KanbanNavbar({setFooterTaskCount}) {
           Awesome Kanban Board
         </NavLink>
 
-        <div className="dropdown mr-2" onClick={toggleMenu}>
+        <div className="dropdown mr-3" onClick={toggleMenu}>
           <button className="btn p-0 border-0 outline-none" type="button">
             <div className="dropdown-userAvatar">
               <img src={userAvatar} alt="user-avatar" />

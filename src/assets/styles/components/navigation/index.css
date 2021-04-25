@@ -17,5 +17,17 @@
   display: none;
 }
 .dropdown-menu--translate {
-  transform: translateX(-60%);
+  transform: translate(-60%, 14%);
+}
+
+.dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top:-14%;
+  left: 65%;
+  width: 0; 
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 12px solid #fff;
 }

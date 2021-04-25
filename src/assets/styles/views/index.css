@@ -1,24 +1,2 @@
-.views-content {
-  width: 100%;
-  border-radius: 5px;
-  padding: 1rem;
-  margin: 0 auto;
-  background-color: var(--table-container-bg);
-}
-.views-title {
-  text-align: center;
-}
-.views-text {
-  text-align: justify;
-}
-
-.views-info {
-  display: flex;
-  justify-content: space-around;
-}
-.views-info-photo img {
-  border-radius: 10px;
-}
-.views-info-list li{
-  list-style: none;
-}
+@import url('./views.css');
+@import url('./media.css');

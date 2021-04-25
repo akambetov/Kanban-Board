@@ -1,0 +1,14 @@
+@media (max-width: 750px) {
+  .views-info {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+.views-info-photo {
+  margin-bottom: 1rem;
+  }
+  .views-info-photo img {
+    width: 200px;
+    height: 228px;
+  }
+}
