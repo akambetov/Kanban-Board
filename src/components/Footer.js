@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
 function Footer ({data}) {
-  const [active, setActive] = useState(data.backlog.issues.length + data.ready.issues.length + data.progress.issues.length);
+  const [active, setActive] = useState(data.backlog.issues.length/* + data.ready.issues.length + data.progress.issues.length*/);
   const [finished, setFinished] = useState(data.finish.issues.length);
   useEffect(() => {
-    setActive(data.backlog.issues.length + data.ready.issues.length + data.progress.issues.length);
+    setActive(data.backlog.issues.length/* + data.ready.issues.length + data.progress.issues.length*/);
     setFinished(data.finish.issues.length);
   })
 
