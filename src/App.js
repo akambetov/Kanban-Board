@@ -1,11 +1,8 @@
 import React, { useEffect, useReducer, useState } from 'react';
 import reducer from './reducer/reducer';
 import { TaskContext } from './context/taskContext';
-import Container from './components/Container';
 import Navbar from './components/Navbar/Navbar';
-import BoardTemplate from './components/Boards/BoardTemplate';
-import MainBoard from './components/Boards/MainBoard';
-import CustomSelect from './components/CustomSelect';
+// import HomePage from './views/HomePage'
 import Footer from './components/Footer';
 
 const KanbanMock = {
@@ -56,16 +53,17 @@ const KanbanMock = {
 
 function App() {
   const [state, dispatch] = useReducer(reducer, JSON.parse(localStorage.getItem('tasks')) || KanbanMock);
-  const [changeTasksCount, setChangeTasksCount] = useState();
+  const [footerTaskCount, setFooterTaskCount] = useState();
   useEffect(() => {
-    setChangeTasksCount(false);
-  }, [changeTasksCount])
+    setFooterTaskCount(false);
+  }, [footerTaskCount])
   return (
     <>
-      <Navbar />
-
-      <Container>
-        <TaskContext.Provider value={{ state, dispatch }}>
+      <TaskContext.Provider value={{ state, dispatch }}>
+        <Navbar setFooterTaskCount={setFooterTaskCount}/>
+      </TaskContext.Provider>
+      
+      {/* <Container>
           <MainBoard 
             setChangeTasksCount = {setChangeTasksCount}
             renderContent={(data, dispatch, updateFrom, changeTrigger, getTaskData) =>
@@ -78,10 +76,9 @@ function App() {
               />
             }
           />
-        </TaskContext.Provider>
-      </Container>
+      </Container> */}
 
-        <CustomSelect issues={state.backlog}/>
+        {/* <CustomSelect issues={state.backlog}/> */}
         
       <Footer data = {state} />
     </>
