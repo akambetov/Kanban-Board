@@ -45,6 +45,9 @@
   word-break: break-all;
   cursor: pointer;
 }
+.task-item:hover {
+  background-color: #dad6d6;
+}
 .task-item--new {
   outline: none;
   border: none;
