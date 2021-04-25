@@ -1,3 +1,8 @@
+@media (max-width: 810px) {
+  .views-content {
+    max-height: 80vh;
+  }
+}
 @media (max-width: 750px) {
   .views-info {
     flex-direction: column;
@@ -10,5 +15,10 @@
   .views-info-photo img {
     width: 200px;
     height: 228px;
+  }
+}
+@media (max-width: 400px) {
+  .views-content {
+    max-height: 75vh;
   }
 }
