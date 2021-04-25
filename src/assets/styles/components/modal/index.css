@@ -42,12 +42,14 @@
   height: 1.5rem;
 }
 .modal-task-title {
+  word-break: break-all;
   font-size: 1.5rem;
   text-align: justify;
   padding-right: 2rem;
   margin-bottom: 2rem;
 }
 .modal-task-description {
+  word-break: break-all;
   font-size: 1.125rem;
   width: 50%;
 }

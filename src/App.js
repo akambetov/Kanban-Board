@@ -9,8 +9,8 @@ const KanbanMock = {
     title: 'backlog',
     updateFromTable: null,
     issues: [
-      // { id: 'backlog-task1', title: 'Sprint bugfix 1', desc: 'lorem lorem lorem lorem' },
-      // { id: 'backlog-task2', title: 'Sprint bugfix 2', desc: 'lorem lorem lorem lorem' },
+      // { id: 'backlog-task1', title: 'Sprint bugfix 1', desc: 'lorem lorem lorem loremlorem lorem lorem loremlorem lorem lorem loremlorem lorem lorem loremlorem lorem lorem loremlorem lorem lorem loremlorem lorem lorem loremlorem lorem lorem loremlorem lorem lorem lorem' },
+      // { id: 'backlog-task2', title: 'Sprint bugfix 2', desc: 'loremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremlorem' },
       // { id: 'backlog-task3', title: 'Sprint bugfix 3', desc: 'lorem lorem lorem lorem' },
       // { id: 'backlog-task4', title: 'Sprint bugfix 4', desc: 'lorem lorem lorem lorem' },
     ],
