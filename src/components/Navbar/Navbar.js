@@ -15,13 +15,35 @@ import arrowUp from '../../assets/img/arrow-up.svg';
 function KanbanNavbar({setFooterTaskCount}) {
   const [isOpenDropdown, setIsOpenDropdown] = useState(() => false);
 
-  function toggleMenu(e) {
+  useState(() => {
+    window.addEventListener('click', windowClickCloseMenu);
+    window.addEventListener('keydown', windowEscapeCloseMenu);
+
+    return () => {
+      window.remove('click', windowClickCloseMenu);
+      window.remove('keydown', windowEscapeCloseMenu);
+    }
+  }, []);
+
+  function windowClickCloseMenu(e) {
+    if (!e.target.closest('.dropdown') && !isOpenDropdown) close ();
+  } 
+
+  function windowEscapeCloseMenu(e) {
+    if (e.code ==='Escape' && !isOpenDropdown) close ();
+  } 
+
+  function toggleMenu() {
     const dropdownMenu = document.querySelector('.dropdown-menu');
     dropdownMenu.classList.toggle('show');
     setIsOpenDropdown((prev) => {
-      console.log(isOpenDropdown);
       return !prev;
     });
+  }
+  function close(e) {
+    const dropdownMenu = document.querySelector('.dropdown-menu');
+    dropdownMenu.classList.remove('show');
+    setIsOpenDropdown(false);
   }
 
   return (

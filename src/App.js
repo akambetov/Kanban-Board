@@ -2,7 +2,6 @@ import React, { useEffect, useReducer, useState } from 'react';
 import reducer from './reducer/reducer';
 import { TaskContext } from './context/taskContext';
 import Navbar from './components/Navbar/Navbar';
-// import HomePage from './views/HomePage'
 import Footer from './components/Footer';
 
 const KanbanMock = {
@@ -61,25 +60,7 @@ function App() {
     <>
       <TaskContext.Provider value={{ state, dispatch }}>
         <Navbar setFooterTaskCount={setFooterTaskCount}/>
-      </TaskContext.Provider>
-      
-      {/* <Container>
-          <MainBoard 
-            setChangeTasksCount = {setChangeTasksCount}
-            renderContent={(data, dispatch, updateFrom, changeTrigger, getTaskData) =>
-              <BoardTemplate 
-                issues={data}
-                dispatch={dispatch}
-                updateFrom={updateFrom}
-                changeTrigger={changeTrigger}
-                getTaskData={getTaskData}
-              />
-            }
-          />
-      </Container> */}
-
-        {/* <CustomSelect issues={state.backlog}/> */}
-        
+      </TaskContext.Provider>        
       <Footer data = {state} />
     </>
   );

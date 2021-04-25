@@ -14,6 +14,8 @@ function Profile () {
           <div className='views-info-list'>
             <ul>
               <li>Date of Birth: 30.07.1990</li>
+              <li>Place of Birth: Almaty (Kazakhstan)</li>
+              <li>Place of Residence: Almaty (Kazakhstan)</li>
               <li>
                 Education
                 <ul>
