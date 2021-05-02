@@ -2,24 +2,6 @@ import React, {useEffect, useState} from 'react';
 import closeIcon from '../assets/img/close.svg'
 
 function Modal({ taskData, setTaskData }) {
-  if (!taskData.isOpen) return null;
-
-  const [windowH, setWindowH] = useState(window.innerHeight)
-  const root = document.querySelector('#root');
-
-  useEffect(() => {
-    if( root.offsetHeight < window.innerHeight) root.style.height = windowH + 'px';
-  }, [windowH]);
-
-  useEffect(() => {
-    window.addEventListener('keydown', closeModatEscape);
-    // Сравнять высоту #root с высотой window, чтобы корректно затемнить задний фон
-    window.addEventListener('resize', windowResize);
-    return () => {
-      window.removeEventListener('keydown', closeModatEscape);
-      window.removeEventListener('resize', windowResize);
-    }
-  }, []);
 
   const windowResize = () => {
     setWindowH(window.innerHeight);
@@ -27,7 +9,7 @@ function Modal({ taskData, setTaskData }) {
     else root.style.height = '';
   }
 
-  const closeModatEscape = (e) => {
+  const closeModalEscape = (e) => {
     if (e.code === "Escape") {
       closeModal();
     }
@@ -45,6 +27,25 @@ function Modal({ taskData, setTaskData }) {
   }
 
 
+  // Hooks
+  const [windowH, setWindowH] = useState(window.innerHeight)
+  const root = document.querySelector('#root');
+
+  useEffect(() => {
+    if( root.offsetHeight < window.innerHeight) root.style.height = windowH + 'px';
+  }, [windowH]);
+
+  useEffect(() => {
+    window.addEventListener('keydown', closeModalEscape);
+    // Сравнять высоту #root с высотой window, чтобы корректно затемнить задний фон
+    window.addEventListener('resize', windowResize);
+    return () => {
+      window.removeEventListener('keydown', closeModalEscape);
+      window.removeEventListener('resize', windowResize);
+    }
+  }, []);
+
+  if (!taskData.isOpen) return null;
 
 
   return (

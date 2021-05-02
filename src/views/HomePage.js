@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from '../components/Container';
 import BoardTemplate from '../components/Boards/BoardTemplate';
 import MainBoard from '../components/Boards/MainBoard';

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default ({ updateFrom, issuesType, handleSelectTitle }) => {
+const CustomSelect = ({ updateFrom, issuesType, handleSelectTitle }) => {
   if (!updateFrom) return null;
 
   const domSelectElem = {
@@ -64,3 +64,5 @@ export default ({ updateFrom, issuesType, handleSelectTitle }) => {
     </>
   );
 };
+
+export default CustomSelect;

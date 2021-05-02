@@ -6,7 +6,7 @@ function Footer ({data}) {
   useEffect(() => {
     setActive(data.backlog.issues.length/* + data.ready.issues.length + data.progress.issues.length*/);
     setFinished(data.finish.issues.length);
-  })
+  }, [data.backlog.issues.length, data.finish.issues.length])
 
   return (
     <div className='footer'>
